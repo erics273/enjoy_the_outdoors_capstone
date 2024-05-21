@@ -2,21 +2,42 @@
 
 window.onload = () => {
 
-    /*
-        You can remove the following console.log() lines.
-        They are here to verify that we have access to the data
-        The data script files are located in the scripts/data directory
-    */
+    let locationDropdown = document.querySelector("#locationDropdown");
+    let typeDropdown = document.querySelector("#typeDropdown");
+    let locationRadio = document.querySelector("#searchByLocation");
+    let typeRadio = document.querySelector("#searchByType");
 
-    //log the locationsArray to the console (scripts/data/locationData.js)
-    console.log(locationsArray)
+    hideElement("#locationDropdown");
+    hideElement("#typeDropdown");
 
-    //log the parkTypesArray to the console (scripts/data/parkTypeData.js)
-    console.log(parkTypesArray)
-
-    //log the nationalParksArray to the console (scripts/data/nationalParkData.js)
-    console.log(nationalParksArray)
+    locationRadio.addEventListener("change", hideShowDropdown)
+    typeRadio.addEventListener("change", hideShowDropdown)
 
 
+}
 
+function hideShowDropdown(event){
+
+    if(event.target.value === "type"){
+        showElement("#typeDropdown");
+        hideElement("#locationDropdown");
+    }else{
+        showElement("#locationDropdown");
+        hideElement("#typeDropdown");
+    }
+
+}
+
+//This function will hide an HTML element on the page
+//Just pass it the id of the element you want to hide
+function hideElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "none";
+}
+
+//This function will show an HTML element on the page
+//Just pass it the id of the element you want to show
+function showElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "block";
 }
